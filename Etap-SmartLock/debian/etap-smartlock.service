@@ -1,0 +1,12 @@
+[Unit]
+Description=Etap Smart Lock Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 -m etap_smartlock.main
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: etap-smartlock
+Version: 1.0.0
+Summary: Etap Smart Lock System
+Author: Eyup ATILGAN
+Requires-Python: >=3.6
+Requires-Dist: PyQt5
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

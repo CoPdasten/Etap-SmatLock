@@ -1,0 +1,10 @@
+Package: etap-smartlock
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: all
+Depends: python3 (>= 3.6), python3-pyqt5
+Maintainer: Eyup ATILGAN
+Description: Etap Smart Lock System
+ A smart lock system for managing computer access times
+ and schedules in educational environments.

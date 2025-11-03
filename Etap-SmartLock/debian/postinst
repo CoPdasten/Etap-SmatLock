@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Tüm kullanıcıların masaüstüne kısayol oluştur
+for USER_HOME in /home/*; do
+    USERNAME=$(basename "$USER_HOME")
+    DESKTOP_DIR="$USER_HOME/Desktop"
+    
+    # Eğer Desktop dizini yoksa Masaüstü'nü kontrol et (Türkçe sistemler için)
+    if [ ! -d "$DESKTOP_DIR" ]; then
+        DESKTOP_DIR="$USER_HOME/Masaüstü"
+    fi
+    
+    if [ -d "$DESKTOP_DIR" ]; then
+        cat > "$DESKTOP_DIR/EtapSmartLock.desktop" << EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Etap Smart Lock
+Comment=Etap Smart Lock System
+Exec=pkexec /usr/bin/python3 -m etap_smartlock.main
+Icon=/usr/share/icons/hicolor/scalable/apps/etap-smartlock.svg
+Terminal=false
+Categories=Utility;
+EOF
+        chmod +x "$DESKTOP_DIR/EtapSmartLock.desktop"
+        chown $USERNAME:$USERNAME "$DESKTOP_DIR/EtapSmartLock.desktop"
+    fi
+done
+
+# Servis yeniden başlat
+systemctl enable etap-smartlock
+systemctl restart etap-smartlock || true
